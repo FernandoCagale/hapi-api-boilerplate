@@ -18,7 +18,7 @@ cache:
 install:
   - pwd && npm install
   - env
-  - psql -c "create database $BD_DATABASE || '_test' ;" -U $BD_USER
+  - psql -c "create database $BD_DATABASE_TEST;" -U $BD_USER
 
 env:
   - CXX=g++-4.9
