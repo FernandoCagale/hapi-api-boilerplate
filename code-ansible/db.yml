@@ -1,0 +1,20 @@
+- hosts: api
+  remote_user: root
+  roles:
+    - role: deploy
+    - role: ANXS.postgresql
+      postgresql_version: 9.5
+      postgresql_users:
+        - name: "{{db_user}}"
+          pass: "{{db_pass}}"
+          encrypted: yes
+      postgresql_databases:
+        - name: "{{db_name}}"
+          owner: "{{db_user}}"
+          uuid_ossp: yes
+      postgresql_user_privileges:
+        - name: "{{db_user}}"
+          db: "{{db_name}}"
+          priv: "ALL"
+          role_attr_flags: "CREATEDB"
+    - role: database

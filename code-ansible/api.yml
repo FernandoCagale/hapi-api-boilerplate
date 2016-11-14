@@ -1,0 +1,7 @@
+- hosts: api 
+  remote_user: root
+  roles: 
+    - role: deploy
+    - role: franklinkim.environment
+    - role: node
+    - role: start

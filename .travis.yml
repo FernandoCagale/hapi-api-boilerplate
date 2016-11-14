@@ -1,0 +1,24 @@
+language: node_js
+sudo: false
+
+node_js:
+  - "6"
+
+addons:
+  postgresql: "9.4"
+
+services:
+  - postgresql
+  - redis-server
+
+cache:
+  directories:
+    node_modules
+
+install:
+  - pwd && npm install
+  - env
+  - psql -c "create database $BD_DATABASE;" -U $BD_USER
+
+env:
+  - CXX=g++-4.9
