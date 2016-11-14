@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+scripts/bootstrap
+
+test -z "$NODE_ENV" &&
+  NODE_ENV='development'
+
+node server.js $1
