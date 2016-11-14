@@ -9,8 +9,8 @@ describe('Routes /user', () => {
         method: 'POST',
         url: '/admin/user/login',
         payload: {
-          login: 'login_1',
-          password: 'login_001'
+          login: 'login_2',
+          password: 'login_002'
         }
       };
       server.inject(options, (response) => {
