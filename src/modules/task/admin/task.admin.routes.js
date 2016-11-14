@@ -4,6 +4,20 @@ import * as Validator from './task.admin.validation';
 exports.register = (server, options, next) => {
   server.route([
     {
+      method: 'GET',
+      path: '/admin/task',
+      config: {
+        description: 'GET task',
+        notes: 'GET task',
+        tags: ['api', 'admin'],
+        auth: {
+          scope: ['admin']
+        },
+        handler: Controller.list,
+        validate: Validator.list()
+      }
+    },
+    {
       method: 'DELETE',
       path: '/admin/task/{id}',
       config: {

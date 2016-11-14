@@ -18,8 +18,9 @@ export const update = async (request, reply) => {
     const model = request.database.Task;
     const id = request.params.id;
     const payload = request.payload;
+    const credentials = request.auth.credentials.id;
 
-    const value = await model.findOne({where: {id: id}});
+    const value = await model.scope({method: ['user', credentials]}).findOne({where: {id: id}});
     if (!value) {
       return reply.notFound();
     }
@@ -35,8 +36,9 @@ export const destroy = async (request, reply) => {
   try {
     const model = request.database.Task;
     const id = request.params.id;
+    const credentials = request.auth.credentials.id;
 
-    const value = await model.findOne({where: {id: id}});
+    const value = await model.scope({method: ['user', credentials]}).findOne({where: {id: id}});
     if (!value) {
       return reply.notFound();
     }
@@ -46,6 +48,24 @@ export const destroy = async (request, reply) => {
     return reply({
       id: value.id
     });
+  } catch (err) {
+    return reply.badImplementationCustom(err);
+  }
+};
+
+export const list = async (request, reply) => {
+  try {
+    const database = request.database;
+    const model = database.Task;
+    const credentials = request.auth.credentials.id;
+
+    const options = {
+      attributes: ['id', 'title']
+    };
+
+    const values = await model.scope({method: ['user', credentials]}).findAndCountAll(options);
+
+    return reply(values);
   } catch (err) {
     return reply.badImplementationCustom(err);
   }

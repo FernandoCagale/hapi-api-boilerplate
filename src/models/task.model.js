@@ -24,6 +24,16 @@ export default (sequelize, DataType) => {
           foreignKey: 'userId'
         });
       }
+    },
+
+    scopes: {
+      user: function (userId) {
+        return {
+          where: {
+            id: userId
+          }
+        };
+      }
     }
   });
 
