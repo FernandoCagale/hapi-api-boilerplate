@@ -8,7 +8,7 @@ exports.register = (server, options, next) => {
     schemes: ['http'],
     info: {
       'title': 'API Documentation',
-      'description': 'API documentation for Yokogawa.',
+      'description': 'API documentation.',
       'version': Pack.version,
       'termsOfService': 'https://github.com/glennjones/hapi-swagger/',
       'contact': {
