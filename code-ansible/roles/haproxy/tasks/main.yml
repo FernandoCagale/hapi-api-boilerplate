@@ -4,4 +4,4 @@
     regexp: "server {{app_name}} {{http_host}}:{{http_port}} cookie {{app_name}} check"
     line: "    server {{app_name}} {{http_host}}:{{http_port}}"
     state: present
-notify: restart haproxy
+  notify: restart haproxy
