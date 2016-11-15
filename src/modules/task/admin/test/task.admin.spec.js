@@ -47,7 +47,6 @@ describe('Routes /task', () => {
         }
       };
       server.inject(options, (response) => {
-        console.log(response.result);
         expect(response).to.have.property('statusCode', 200);
         expect(response).to.have.property('result');
         expect(response.result).to.have.property('id').to.be.a('number').to.be.above(0);
@@ -97,22 +96,6 @@ describe('Routes /task', () => {
       server.inject(options, (response) => {
         expect(response.result).to.have.property('statusCode', 404);
         expect(response.result).to.have.property('error', 'Not Found');
-        done();
-      });
-    });
-  });
-
-  describe('GET /admin/task', () => {
-    it('return task at a time', (done) => {
-      const options = {
-        method: 'GET',
-        url: '/admin/task',
-        headers: {'Authorization': 'Bearer ' + token}
-      };
-      server.inject(options, (response) => {
-        expect(response.result).to.have.property('count', 1);
-        expect(response.result.rows).to.contain.a.thing.with.property('id');
-        expect(response.result.rows).to.contain.a.thing.with.property('title');
         done();
       });
     });
