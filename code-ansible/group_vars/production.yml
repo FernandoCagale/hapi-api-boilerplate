@@ -1,6 +1,6 @@
 ---
 server_host: localhost
-server_port: 80
+server_port: 8080
 
 db_name: api_production
 db_host: localhost
