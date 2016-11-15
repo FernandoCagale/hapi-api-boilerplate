@@ -2,7 +2,9 @@
 
 import * as factory from '../../../../test-utils/factory.girl';
 
-describe('Routes /task', () => {
+const ENDPOINT = '/admin/task';
+
+describe(`Routes admin ${ENDPOINT}`, () => {
   let token = null;
   let id = null;
 
@@ -14,12 +16,12 @@ describe('Routes /task', () => {
     });
   });
 
-  describe('POST /admin/task', () => {
+  describe(`POST ${ENDPOINT}`, () => {
     it('returns 200 HTTP status code', (done) => {
       const options = {
         method: 'POST',
-        url: '/admin/task',
-        headers: {'Authorization': 'Bearer ' + token},
+        url: ENDPOINT,
+        headers: {'Authorization': `Bearer ${token}`},
         payload: {
           title: 'title'
         }
@@ -36,12 +38,12 @@ describe('Routes /task', () => {
     });
   });
 
-  describe('PUT /admin/task', () => {
+  describe(`PUT ${ENDPOINT}/{id}`, () => {
     it('returns 200 HTTP status code', (done) => {
       const options = {
         method: 'PUT',
-        url: '/admin/task/' + id,
-        headers: {'Authorization': 'Bearer ' + token},
+        url: `${ENDPOINT}/${id}`,
+        headers: {'Authorization': `Bearer ${token}`},
         payload: {
           title: 'title alter'
         }
@@ -57,8 +59,8 @@ describe('Routes /task', () => {
     it('return not found', (done) => {
       const options = {
         method: 'PUT',
-        url: '/admin/task/100',
-        headers: {'Authorization': 'Bearer ' + token},
+        url: `${ENDPOINT}/100`,
+        headers: {'Authorization': `Bearer ${token}`},
         payload: {
           title: 'title alter'
         }
@@ -72,12 +74,12 @@ describe('Routes /task', () => {
     });
   });
 
-  describe('DELETE /admin/task/{id}', () => {
+  describe(`DELETE ${ENDPOINT}/{id}`, () => {
     it('returns 200 HTTP status code when record is deleted', (done) => {
       const options = {
         method: 'DELETE',
-        url: '/admin/task/' + id,
-        headers: {'Authorization': 'Bearer ' + token}
+        url: `${ENDPOINT}/${id}`,
+        headers: {'Authorization': `Bearer ${token}`}
       };
       server.inject(options, (response) => {
         expect(response).to.have.property('statusCode', 200);
@@ -90,8 +92,8 @@ describe('Routes /task', () => {
     it('return not found', (done) => {
       const options = {
         method: 'DELETE',
-        url: '/admin/task/100',
-        headers: {'Authorization': 'Bearer ' + token}
+        url: `${ENDPOINT}/100`,
+        headers: {'Authorization': `Bearer ${token}`}
       };
       server.inject(options, (response) => {
         expect(response.result).to.have.property('statusCode', 404);
@@ -101,12 +103,12 @@ describe('Routes /task', () => {
     });
   });
 
-  describe('GET /admin/task', () => {
+  describe(`GET ${ENDPOINT}`, () => {
     it('return task at a time', (done) => {
       const options = {
         method: 'GET',
-        url: '/admin/task',
-        headers: {'Authorization': 'Bearer ' + token}
+        url: ENDPOINT,
+        headers: {'Authorization': `Bearer ${token}`}
       };
       server.inject(options, (response) => {
         expect(response.result).to.have.property('count', 1);

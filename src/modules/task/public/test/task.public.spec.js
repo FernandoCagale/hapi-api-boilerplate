@@ -1,11 +1,13 @@
 /* global describe, it, expect, server */
 
-describe('Routes /task', () => {
-  describe('GET /public/task', () => {
+const ENDPOINT = '/public/task';
+
+describe(`Routes public ${ENDPOINT}`, () => {
+  describe(`GET ${ENDPOINT}`, () => {
     it('return task at a time', (done) => {
       const options = {
         method: 'GET',
-        url: '/public/task'
+        url: ENDPOINT
       };
       server.inject(options, (response) => {
         expect(response.result.rows).to.contain.a.thing.with.property('id');
@@ -15,11 +17,11 @@ describe('Routes /task', () => {
     });
   });
 
-  describe('GET /public/task/{id}', () => {
+  describe(`GET ${ENDPOINT}/{id}`, () => {
     it('return task id', (done) => {
       const options = {
         method: 'GET',
-        url: '/public/task/1'
+        url: `${ENDPOINT}/1`
       };
       server.inject(options, (response) => {
         expect(response.result).to.have.property('id', 1);
@@ -31,7 +33,7 @@ describe('Routes /task', () => {
     it('return not found', (done) => {
       const options = {
         method: 'GET',
-        url: '/public/task/100'
+        url: `${ENDPOINT}/100`
       };
       server.inject(options, (response) => {
         expect(response.result).to.have.property('statusCode', 404);

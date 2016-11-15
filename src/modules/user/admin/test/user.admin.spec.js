@@ -1,13 +1,15 @@
 /* global describe, it, expect, server */
 
-describe('Routes /user', () => {
+const ENDPOINT = '/admin/user';
+
+describe(`Routes admin ${ENDPOINT}`, () => {
   let token = null;
 
-  describe('POST /admin/user/login', () => {
+  describe(`POST ${ENDPOINT}/login`, () => {
     it('returns 200 HTTP status code', (done) => {
       const options = {
         method: 'POST',
-        url: '/admin/user/login',
+        url: `${ENDPOINT}/login`,
         payload: {
           login: 'login_2',
           password: 'login_002'
@@ -27,7 +29,7 @@ describe('Routes /user', () => {
     it('returns 401 HTTP status code', (done) => {
       const options = {
         method: 'POST',
-        url: '/admin/user/login',
+        url: `${ENDPOINT}/login`,
         payload: {
           login: 'login_test',
           password: 'test_009'
@@ -41,12 +43,12 @@ describe('Routes /user', () => {
     });
   });
 
-  describe('POST /admin/user', () => {
+  describe(`POST ${ENDPOINT}`, () => {
     it('returns 200 HTTP status code', (done) => {
       const options = {
         method: 'POST',
-        url: '/admin/user',
-        headers: {'Authorization': 'Bearer ' + token},
+        url: ENDPOINT,
+        headers: {'Authorization': `Bearer ${token}`},
         payload: getDefault()
       };
       server.inject(options, (response) => {
@@ -55,17 +57,18 @@ describe('Routes /user', () => {
         expect(response.result).to.have.property('token');
 
         token = response.result.token;
+
         done();
       });
     });
   });
 
-  describe('GET /admin/user', () => {
+  describe(`GET ${ENDPOINT}`, () => {
     it('returns 200 HTTP status code', (done) => {
       const options = {
         method: 'GET',
-        url: '/admin/user',
-        headers: {'Authorization': 'Bearer ' + token}
+        url: ENDPOINT,
+        headers: {'Authorization': `Bearer ${token}`}
       };
       server.inject(options, (response) => {
         expect(response).to.have.property('result');
@@ -76,12 +79,12 @@ describe('Routes /user', () => {
     });
   });
 
-  describe('PUT /admin/user', () => {
+  describe(`PUT ${ENDPOINT}`, () => {
     it('returns 200 HTTP status code', (done) => {
       const options = {
         method: 'PUT',
-        url: '/admin/user',
-        headers: {'Authorization': 'Bearer ' + token},
+        url: ENDPOINT,
+        headers: {'Authorization': `Bearer ${token}`},
         payload: {
           login: 'login_test_alter',
           password: 'login_alter_001'
@@ -91,18 +94,17 @@ describe('Routes /user', () => {
         expect(response).to.have.property('statusCode', 200);
         expect(response).to.have.property('result');
         expect(response.result).to.have.property('id');
-
         done();
       });
     });
   });
 
-  describe('POST /admin/user/logout', () => {
+  describe(`POST ${ENDPOINT}/logout`, () => {
     it('returns 200 HTTP status code', (done) => {
       const options = {
         method: 'POST',
-        url: '/admin/user/logout',
-        headers: {'Authorization': 'Bearer ' + token}
+        url: `${ENDPOINT}/logout`,
+        headers: {'Authorization': `Bearer ${token}`}
       };
       server.inject(options, (response) => {
         expect(response).to.have.property('result');
@@ -114,8 +116,8 @@ describe('Routes /user', () => {
     it('returns 401 HTTP status code', (done) => {
       const options = {
         method: 'GET',
-        url: '/admin/user',
-        headers: {'Authorization': 'Bearer ' + token}
+        url: ENDPOINT,
+        headers: {'Authorization': `Bearer ${token}`}
       };
       server.inject(options, (response) => {
         expect(response.result).to.have.property('statusCode', 401);
