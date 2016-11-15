@@ -7,9 +7,3 @@
   service: name=redis-server state=started enabled=yes
   become: yes
   become_method: sudo
-
-- name: Ensure Redis Configuration
-  template: src=redis.conf.j2 dest=/etc/redis/redis.conf owner=root group=root mode=0644
-  become: yes
-  become_method: sudo
-  notify: Redis Restart
