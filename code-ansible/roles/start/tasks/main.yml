@@ -12,11 +12,11 @@
   changed_when: false
 
 - name: Start application
-  command: chdir={{app_path}} pm2 start {{app_bin}} --name {{app_name}} -i 4 -x -- setup
+  command: chdir={{app_path}} pm2 start {{app_bin}} --name {{app_name}} -i 4
   when: "pm2_list.stdout.find('{{app_name}}') == -1"
 
 - name: Reload application
-  command: "chdir={{app_path}} pm2 reload {{app_bin}} --name {{app_name}} -x -- setup"
+  command: "chdir={{app_path}} pm2 reload {{app_bin}} --name {{app_name}}
 
 - name: Startup pm2
   command: pm2 startup
