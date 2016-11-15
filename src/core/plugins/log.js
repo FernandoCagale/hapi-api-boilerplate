@@ -16,7 +16,7 @@ exports.register = (server, options, next) => {
       file: [{
         module: 'good-squeeze',
         name: 'Squeeze',
-        args: [{ error: '*' }]
+        args: [{ ops: '*', error: '*' }]
       }, {
         module: 'good-squeeze',
         name: 'SafeJson'
