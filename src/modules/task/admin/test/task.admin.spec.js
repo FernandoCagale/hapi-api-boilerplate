@@ -100,4 +100,20 @@ describe('Routes /task', () => {
       });
     });
   });
+
+  describe('GET /admin/task', () => {
+    it('return task at a time', (done) => {
+      const options = {
+        method: 'GET',
+        url: '/admin/task',
+        headers: {'Authorization': 'Bearer ' + token}
+      };
+      server.inject(options, (response) => {
+        expect(response.result).to.have.property('count', 1);
+        expect(response.result.rows).to.contain.a.thing.with.property('id');
+        expect(response.result.rows).to.contain.a.thing.with.property('title');
+        done();
+      });
+    });
+  });
 });
