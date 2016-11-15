@@ -1,0 +1,4 @@
+- name: Redis Restart
+  service: name=redis-server state=restarted enabled=yes
+  become: yes
+  become_method: sudo
