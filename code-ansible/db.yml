@@ -18,3 +18,8 @@
           priv: "ALL"
           role_attr_flags: "CREATEDB"
     - role: database
+    - role: geerlingguy.haproxy
+      haproxy_backend_servers: 
+        - name: "{{app_name}}"
+          address: "{{http_host}}:{{http_port}}"
+    - haproxy

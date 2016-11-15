@@ -1,2 +1,3 @@
 - src: ANXS.postgresql
 - src: franklinkim.environment
+- src: geerlingguy.haproxy
