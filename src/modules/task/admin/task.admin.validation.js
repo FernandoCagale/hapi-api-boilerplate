@@ -1,6 +1,7 @@
 import * as Schema from '../task.schema';
 
 const schema = Schema.getSchema();
+const query = Schema.getQuery();
 
 export function destroy () {
   return {
@@ -38,5 +39,7 @@ export function update () {
 }
 
 export function list () {
-  return {};
+  return {
+    query: query
+  };
 }

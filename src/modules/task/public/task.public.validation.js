@@ -1,9 +1,12 @@
 import * as Schema from '../task.schema';
 
 const schema = Schema.getSchema();
+const query = Schema.getQuery();
 
 export function list () {
-  return {};
+  return {
+    query: query
+  };
 }
 
 export function read () {

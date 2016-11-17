@@ -27,7 +27,9 @@ export const list = async (request, reply) => {
     const model = database.Task;
 
     const options = {
-      attributes: ['id', 'title']
+      attributes: ['id', 'title'],
+      offset: request.offset(),
+      limit: request.limit()
     };
 
     const values = await model.findAndCountAll(options);

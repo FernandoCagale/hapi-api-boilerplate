@@ -60,7 +60,9 @@ export const list = async (request, reply) => {
     const credentials = request.auth.credentials.id;
 
     const options = {
-      attributes: ['id', 'title']
+      attributes: ['id', 'title'],
+      offset: request.offset(),
+      limit: request.limit()
     };
 
     const values = await model.scope({method: ['user', credentials]}).findAndCountAll(options);
