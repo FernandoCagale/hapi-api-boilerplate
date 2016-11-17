@@ -1,10 +1,6 @@
 exports.register = (server, options, next) => {
   const limitDefault = options.limit || 5;
 
-  const search = function () {
-    return this.query.search || null;
-  };
-
   const limit = function () {
     return this.query.limit || limitDefault;
   };
@@ -19,7 +15,6 @@ exports.register = (server, options, next) => {
 
   server.decorate('request', 'offset', offset);
   server.decorate('request', 'limit', limit);
-  server.decorate('request', 'search', search);
 
   next();
 };
