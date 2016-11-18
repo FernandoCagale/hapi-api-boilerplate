@@ -1,4 +1,4 @@
-# hapi-sequelize-default
+# hapi-sequelize-boilerplate
 
 [![Build Status][travis-badge]][travis-url]
 
