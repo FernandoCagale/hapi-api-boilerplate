@@ -1,5 +1,8 @@
+import * as load from '../util/load';
+
 exports.register = (server, options, next) => {
   const db = options.database;
+  const config = load.getRedis();
 
   server.method('loadModels', loadModels);
 
@@ -22,7 +25,11 @@ exports.register = (server, options, next) => {
   });
 
   server.register({
-    register: require('hapi-slap')
+    register: require('hapi-slap'),
+    options: {
+      url: `redis://${config.host}:${config.port}/0`,
+      expireIn: 300
+    }
   }, (err) => {
     if (!err) {
       return next();
