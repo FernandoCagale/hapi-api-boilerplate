@@ -7,6 +7,8 @@ export const create = async (request, reply) => {
 
     const value = await model.create(payload);
 
+    request.clearCache();
+
     return reply({id: value.id});
   } catch (err) {
     return reply.badImplementationCustom(err);
@@ -25,6 +27,8 @@ export const update = async (request, reply) => {
       return reply.notFound();
     }
 
+    request.clearCache();
+
     const valueUpdate = await value.update(payload, {where: {id: id}});
     return reply({id: valueUpdate.id});
   } catch (err) {
@@ -42,6 +46,8 @@ export const destroy = async (request, reply) => {
     if (!value) {
       return reply.notFound();
     }
+
+    request.clearCache();
 
     await value.destroy();
 
@@ -65,9 +71,9 @@ export const list = async (request, reply) => {
       limit: request.limit()
     };
 
-    const values = await model.scope({method: ['user', credentials]}).findAndCountAll(options);
+    const values = await model.scope({method: ['user', credentials]}).findAndCountAll(request.fieldsAll(options));
 
-    return reply(values);
+    return reply(values).header('allowing-fields', request.fieldsHeaders(options));
   } catch (err) {
     return reply.badImplementationCustom(err);
   }

@@ -7,6 +7,8 @@ exports.register = (server, options, next) => {
     }
 
     switch (err.name) {
+      case 'AttributesInvalidError':
+        return this.response(Boom.badData('fields invalid header'));
       case 'SequelizeForeignKeyConstraintError':
         return this.response(Boom.badData('foreign key constraint error'));
       case 'SequelizeUniqueConstraintError':

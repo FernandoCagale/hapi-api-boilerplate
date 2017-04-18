@@ -5,7 +5,7 @@ BD_HOST=localhost
 BD_USER=postgres
 BD_PORT=5432
 BD_PASSWORD=postgres
-BD_DATABASE=template
+BD_NAME=template
 
 JWT=secret
 

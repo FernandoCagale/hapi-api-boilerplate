@@ -24,6 +24,11 @@ exports.register = (server, options, next) => {
         description: 'DELETE task',
         notes: 'DELETE task',
         tags: ['api', 'admin'],
+        plugins: {
+          slap: {
+            clear: ['task', 'task-id']
+          }
+        },
         auth: {
           scope: ['admin']
         },
@@ -38,6 +43,11 @@ exports.register = (server, options, next) => {
         description: 'PUT task',
         notes: 'PUT task',
         tags: ['api', 'admin'],
+        plugins: {
+          slap: {
+            clear: ['task', 'task-id']
+          }
+        },
         auth: {
           scope: ['admin']
         },
@@ -52,6 +62,11 @@ exports.register = (server, options, next) => {
         description: 'POST task',
         notes: 'POST task',
         tags: ['api', 'admin'],
+        plugins: {
+          slap: {
+            clear: ['task', 'task-id']
+          }
+        },
         auth: {
           scope: ['admin']
         },

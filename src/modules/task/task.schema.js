@@ -13,7 +13,14 @@ const schema = {
   userId: Joi
     .number()
     .integer()
-    .min(0)
+    .min(0),
+  fields: Joi.object({
+    fields: Joi
+    .string()
+    .min(1)
+    .max(250)
+    .trim()
+  }).options({ allowUnknown: true })
 };
 
 const query = {

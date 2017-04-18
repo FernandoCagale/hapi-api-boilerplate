@@ -1,0 +1,33 @@
+node:
+    build: .
+    container_name: app_test
+    dockerfile: Dockerfile-test
+    environment:
+        - DB_USER=template
+        - DB_PASS=template
+        - DB_NAME=template
+    links:
+        - redis
+        - postgres
+    ports:
+        - "8080:8080"
+    volumes:
+        - .:/usr/src/app
+        - /usr/src/app/node_modules
+redis:
+    image: redis
+    container_name: redis
+    ports:
+        - "6379"
+    command: ["redis-server", "--appendonly", "yes"]
+postgres:
+    restart: always
+    image: sameersbn/postgresql:9.6-2
+    container_name: postgres
+    ports:
+        - "5432"
+    environment:
+        - NODE_ENV=test
+        - DB_USER=template
+        - DB_PASS=template
+        - DB_NAME=template_test

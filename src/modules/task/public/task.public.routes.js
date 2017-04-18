@@ -11,6 +11,11 @@ exports.register = (server, options, next) => {
         notes: 'GET id task',
         tags: ['api', 'public'],
         auth: false,
+        plugins: {
+          slap: {
+            rule: 'task-id'
+          }
+        },
         handler: Controller.read,
         validate: Validator.read()
       }
@@ -23,6 +28,11 @@ exports.register = (server, options, next) => {
         notes: 'GET task',
         tags: ['api', 'public'],
         auth: false,
+        plugins: {
+          slap: {
+            rule: 'task'
+          }
+        },
         handler: Controller.list,
         validate: Validator.list()
       }

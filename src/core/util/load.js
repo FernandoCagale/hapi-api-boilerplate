@@ -5,22 +5,35 @@ dotenv.load({silent: true});
 export const getServer = () => {
   const config = {
     host: process.env['SERVER_HOST'],
-    port: process.env['SERVER_PORT']
+    port: process.env['SERVER_PORT'] || '3000'
   };
 
   return config;
 };
 
 export const getDatabase = () => {
-  const env = process.env['NODE_ENV'];
+  const env = process.env['NODE_ENV'] || 'development';
 
   const config = {
-    port: process.env['BD_PORT'],
-    host: process.env['BD_HOST'],
-    username: process.env['BD_USER'],
-    password: process.env['BD_PASSWORD'],
-    database: env && env === 'test' ? process.env['BD_DATABASE'] + '_test' : process.env['BD_DATABASE'],
+    port: process.env['POSTGRES_PORT_5432_TCP_PORT'] || process.env['BD_PORT'] || '5434',
+    host: process.env['POSTGRES_PORT_5432_TCP_ADDR'] || process.env['BD_HOST'] || '127.0.0.1',
+    username: process.env['BD_USER'] || 'postgres',
+    password: process.env['BD_PASSWORD'] || 'postgres',
+    database: process.env['BD_NAME'] || 'template',
     dialect: 'postgres'
+  };
+
+  if (env === 'test') {
+    config.database += '_test';
+  }
+
+  return config;
+};
+
+export const getRedis = () => {
+  const config = {
+    host: process.env['REDIS_PORT_6379_TCP_ADDR'] || '127.0.0.1',
+    port: process.env['REDIS_PORT_6379_TCP_PORT'] || '6379'
   };
 
   return config;

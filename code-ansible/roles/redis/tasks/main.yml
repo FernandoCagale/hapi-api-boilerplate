@@ -1,9 +1,0 @@
-- name: Ensure Redis is present
-  apt: pkg=redis-server state=latest
-  become: yes
-  become_method: sudo
-
-- name: Ensure Redis is started
-  service: name=redis-server state=started enabled=yes
-  become: yes
-  become_method: sudo

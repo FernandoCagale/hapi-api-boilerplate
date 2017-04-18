@@ -10,7 +10,8 @@ server.connection({
   port: conf.port,
   routes: {
     cors: {
-      credentials: true
+      credentials: true,
+      additionalHeaders: ['fields']
     },
     validate: {
       options: {

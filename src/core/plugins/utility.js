@@ -22,6 +22,22 @@ exports.register = (server, options, next) => {
   });
 
   server.register({
+    register: require('hapi-slap')
+  }, (err) => {
+    if (!err) {
+      return next();
+    }
+  });
+
+  server.register({
+    register: require('hapi-sequelize-dynamic-fields')
+  }, (err) => {
+    if (!err) {
+      return next();
+    }
+  });
+
+  server.register({
     register: require('hapi-joier'),
     options: {
       enable: true
