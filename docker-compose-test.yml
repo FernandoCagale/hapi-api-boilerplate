@@ -18,14 +18,14 @@ redis:
     image: redis
     container_name: redis
     ports:
-        - "6379"
+        - "6379:6379"
     command: ["redis-server", "--appendonly", "yes"]
 postgres:
     restart: always
     image: sameersbn/postgresql:9.6-2
     container_name: postgres
     ports:
-        - "5432"
+        - "5432:5432"
     environment:
         - NODE_ENV=test
         - DB_USER=template
