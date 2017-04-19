@@ -2,8 +2,9 @@ Hapi-API-boilerplate
 ===
 [![Build Status][travis-badge]][travis-url]
 
-[travis-badge]: https://travis-ci.org/FernandoCagale/hapi-sequelize-boilerplate.svg?branch=master
-[travis-url]: https://travis-ci.org/FernandoCagale/hapi-sequelize-default
+[travis-badge]: https://travis-ci.org/FernandoCagale/hapi-api-boilerplate.svg?branch=master
+[travis-url]: https://travis-ci.org/FernandoCagale/hapi-api-boilerplate
+
 
 [![js-semistandard-style](https://cdn.rawgit.com/flet/semistandard/master/badge.svg)](https://github.com/Flet/semistandard)
 
