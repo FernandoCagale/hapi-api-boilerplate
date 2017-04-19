@@ -1,16 +1,19 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Default - server",
+  "description": "Hapi-API-boilerplate",
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/FernandoCagale/hapi-sequelize-default"
+    "url": "https://github.com/FernandoCagale/hapi-api-boilerplate"
   },
   "scripts": {
     "start": "scripts/server",
     "test": "scripts/test",
     "linter": "semistandard"
+  },
+  "bugs": {
+    "url": "https://github.com/FernandoCagale/hapi-api-boilerplate/issues"
   },
   "author": "Fernando Cagale",
   "license": "MIT",
