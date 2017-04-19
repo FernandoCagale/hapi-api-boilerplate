@@ -80,4 +80,4 @@ Caso você utilize docker, execute `docker-compose up -d` acesse `localhost:8080
 
 ## License
 
-Licensed under [MIT](https://github.com/FernandoCagale/DefaultSQL/blob/master/LICENSE)
+Licensed under [MIT](https://github.com/FernandoCagale/hapi-api-boilerplate/blob/master/LICENSE)
