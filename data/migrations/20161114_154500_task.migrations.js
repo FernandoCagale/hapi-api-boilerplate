@@ -1,4 +1,4 @@
-import Task from '../../src/models/task.model';
+const Task = require('../../src/models/task.model');
 
 module.exports = { up, down };
 

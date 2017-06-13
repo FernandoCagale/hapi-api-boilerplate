@@ -1,4 +1,4 @@
-import User from '../../src/models/user.model';
+const User = require('../../src/models/user.model');
 
 module.exports = { up, down };
 
