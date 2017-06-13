@@ -1,17 +1,25 @@
-import dotenv from 'dotenv';
+'use strict';
+
+const dotenv = require('dotenv');
+
+module.exports = {
+  getServer: getServer,
+  getDatabase: getDatabase,
+  getRedis: getRedis
+};
 
 dotenv.load({silent: true});
 
-export const getServer = () => {
+function getServer () {
   const config = {
     host: process.env['SERVER_HOST'],
     port: process.env['SERVER_PORT'] || '8080'
   };
 
   return config;
-};
+}
 
-export const getDatabase = () => {
+function getDatabase () {
   const env = process.env['NODE_ENV'] || 'development';
 
   const config = {
@@ -28,13 +36,13 @@ export const getDatabase = () => {
   }
 
   return config;
-};
+}
 
-export const getRedis = () => {
+function getRedis () {
   const config = {
     host: process.env['REDIS_PORT_6379_TCP_ADDR'] || '127.0.0.1',
     port: process.env['REDIS_PORT_6379_TCP_PORT'] || '6379'
   };
 
   return config;
-};
+}

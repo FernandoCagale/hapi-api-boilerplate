@@ -1,4 +1,4 @@
-import * as load from '../util/load';
+const load = require('../util/load');
 
 exports.register = (server, options, next) => {
   const db = options.database;
@@ -57,7 +57,7 @@ exports.register = (server, options, next) => {
 
   function loadModels (models, cb) {
     models.map((m) => {
-      let model = db.sequelize['import'](m);
+      let model = db.sequelize['const'](m);
       db[model.name] = model;
     });
 

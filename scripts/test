@@ -17,7 +17,7 @@ echo "===> Running linter..."
 echo "===> Running tests..."
 
 if [ -z "$1" ] ; then
-  ./node_modules/.bin/lab -l -v -m 60000 --pattern 'spec' src/test/index.spec.js src/test/bootstrap.spec.js src/modules
+  ./node_modules/.bin/lab -l -v -m 60000 --pattern 'spec' src/test/index.spec.js src/modules
 else
-  ./node_modules/.bin/lab -l -v -m 60000 --pattern 'spec' src/test/index.spec.js src/test/bootstrap.spec.js src/modules/$1
+  ./node_modules/.bin/lab -l -v -m 60000 --pattern 'spec' src/test/index.spec.js src/modules/$1
 fi

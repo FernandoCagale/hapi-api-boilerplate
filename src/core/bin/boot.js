@@ -1,4 +1,13 @@
-export const development = async (server, type) => {
+'use strict';
+
+module.exports = {
+  development: development,
+  test: test,
+  production: production,
+  sandbox: sandbox
+};
+
+async function development (server, type) {
   try {
     if (type === 'setup') {
       console.log('===> migration DOWN');
@@ -24,9 +33,9 @@ export const development = async (server, type) => {
   } catch (err) {
     throw err;
   }
-};
+}
 
-export const test = async (server) => {
+async function test (server) {
   try {
     console.log('===> migration DOWN');
     await server.database.migration('down', server.database.optionsMigration);
@@ -45,9 +54,9 @@ export const test = async (server) => {
   } catch (err) {
     throw err;
   }
-};
+}
 
-export const sandbox = async (server) => {
+async function sandbox (server) {
   try {
     console.log('===> migration UP');
     await server.database.migration('up', server.database.optionsMigration);
@@ -57,9 +66,9 @@ export const sandbox = async (server) => {
   } catch (err) {
     throw err;
   }
-};
+}
 
-export const production = async (server) => {
+async function production (server) {
   try {
     console.log('===> migration UP');
     await server.database.migration('up', server.database.optionsMigration);
@@ -69,4 +78,4 @@ export const production = async (server) => {
   } catch (err) {
     throw err;
   }
-};
+}

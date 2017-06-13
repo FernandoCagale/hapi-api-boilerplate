@@ -1,7 +1,7 @@
-import Inert from 'inert';
-import Vision from 'vision';
-import HapiSwagger from 'hapi-swagger';
-import Pack from '../../../package';
+const Inert = require('inert');
+const Vision = require('vision');
+const HapiSwagger = require('hapi-swagger');
+const Pack = require('../../../package');
 
 exports.register = (server, options, next) => {
   const swaggerOptions = {

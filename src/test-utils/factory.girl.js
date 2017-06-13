@@ -1,6 +1,12 @@
-import Promise from 'bluebird';
+'use strict';
 
-export function getToken (server) {
+const Promise = require('bluebird');
+
+module.exports = {
+  getToken: getToken
+};
+
+function getToken (server) {
   return new Promise((resolve, reject) => {
     const options = {
       method: 'POST',

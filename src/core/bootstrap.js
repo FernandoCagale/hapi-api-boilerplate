@@ -1,9 +1,9 @@
-import Promise from 'bluebird';
-import path from 'path';
-import server from './server';
-import * as boot from './bin/boot';
-import * as load from './util/load';
-import * as core from './util/core-function';
+const Promise = require('bluebird');
+const path = require('path');
+const server = require('./server');
+const boot = require('./bin/boot');
+const load = require('./util/load');
+const core = require('./util/core-function');
 
 const fs = Promise.promisifyAll(require('fs'));
 

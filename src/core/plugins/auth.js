@@ -1,6 +1,6 @@
-import jwt from 'hapi-auth-jwt2';
-import jsonWebToken from 'jsonwebtoken';
-import client from '../client.redis';
+const jwt = require('hapi-auth-jwt2');
+const jsonWebToken = require('jsonwebtoken');
+const client = require('../client.redis');
 
 const key = process.env.JWT || 'template';
 

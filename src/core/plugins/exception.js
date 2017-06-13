@@ -1,4 +1,4 @@
-import Boom from 'boom';
+const Boom = require('boom');
 
 exports.register = (server, options, next) => {
   const badImplementationCustom = function (err) {

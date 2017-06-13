@@ -1,5 +1,7 @@
-import Hapi from 'hapi';
-import * as load from './util/load';
+'use strict';
+
+const Hapi = require('hapi');
+const load = require('./util/load');
 
 const conf = load.getServer();
 
@@ -21,4 +23,4 @@ server.connection({
   }
 });
 
-export default server;
+module.exports = server;

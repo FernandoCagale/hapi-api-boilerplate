@@ -1,6 +1,8 @@
-import _ from 'lodash';
-import fs from 'fs';
-import path from 'path';
+'use strict';
+
+const _ = require('lodash');
+const fs = require('fs');
+const path = require('path');
 
 const basePath = __dirname;
 

@@ -1,4 +1,4 @@
-import Good from 'good';
+const Good = require('good');
 
 exports.register = (server, options, next) => {
   const opt = {

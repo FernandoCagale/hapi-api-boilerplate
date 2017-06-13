@@ -1,5 +1,7 @@
-import redis from 'redis';
-import * as load from './util/load';
+'use strict';
+
+const redis = require('redis');
+const load = require('./util/load');
 
 const config = load.getRedis();
 const client = redis.createClient(config.port, config.host);
@@ -8,4 +10,4 @@ client.on('connect', () => {
   console.log('===> connected redis');
 });
 
-export default client;
+module.exports = client;
