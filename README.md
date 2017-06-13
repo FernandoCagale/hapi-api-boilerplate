@@ -1,4 +1,4 @@
-Hapi-API-boilerplate
+Hapi-API-boilerplate Node(8.1.0)
 ===
 [![Build Status][travis-badge]][travis-url]
 
