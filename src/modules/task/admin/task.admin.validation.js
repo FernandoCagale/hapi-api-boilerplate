@@ -1,9 +1,18 @@
-import * as Schema from '../task.schema';
+'use strict';
+
+const Schema = require('../task.schema');
 
 const schema = Schema.getSchema();
 const query = Schema.getQuery();
 
-export function destroy () {
+module.exports = {
+  destroy: destroy,
+  create: create,
+  update: update,
+  list: list
+};
+
+function destroy () {
   return {
     params: {
       id: schema
@@ -13,7 +22,7 @@ export function destroy () {
   };
 }
 
-export function create () {
+function create () {
   return {
     payload: {
       title: schema
@@ -23,7 +32,7 @@ export function create () {
   };
 }
 
-export function update () {
+function update () {
   return {
     params: {
       id: schema
@@ -38,7 +47,7 @@ export function update () {
   };
 }
 
-export function list () {
+function list () {
   return {
     query: query
   };

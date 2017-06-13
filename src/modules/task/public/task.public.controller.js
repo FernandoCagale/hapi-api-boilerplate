@@ -1,4 +1,11 @@
-export const read = async (request, reply) => {
+'use strict';
+
+module.exports = {
+  read: read,
+  list: list
+};
+
+async function read (request, reply) {
   try {
     const model = request.database.Task;
     const taskId = request.params.id;
@@ -16,9 +23,10 @@ export const read = async (request, reply) => {
       return reply(cache).header('allowing-fields', request.fieldsHeaders(options));
     }
 
+    const values = await model.find(request.fieldsAll(options));
+
     request.addCache(values, taskId);
 
-    const values = await model.find(request.fieldsAll(options));
     if (!values) {
       return reply.notFound();
     }
@@ -27,9 +35,9 @@ export const read = async (request, reply) => {
   } catch (err) {
     return reply.badImplementationCustom(err);
   }
-};
+}
 
-export const list = async (request, reply) => {
+async function list (request, reply) {
   try {
     const database = request.database;
     const model = database.Task;
@@ -49,9 +57,9 @@ export const list = async (request, reply) => {
     const values = await model.findAndCountAll(request.fieldsAll(options));
 
     request.addCache(values);
-    console.log(request.fieldsHeaders(options));
+
     return reply(values).header('allowing-fields', request.fieldsHeaders(options));
   } catch (err) {
     return reply.badImplementationCustom(err);
   }
-};
+}

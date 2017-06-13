@@ -1,4 +1,13 @@
-export const create = async (request, reply) => {
+'use strict';
+
+module.exports = {
+  create: create,
+  update: update,
+  list: list,
+  destroy: destroy
+};
+
+async function create (request, reply) {
   try {
     const model = request.database.Task;
     const payload = request.payload;
@@ -13,9 +22,9 @@ export const create = async (request, reply) => {
   } catch (err) {
     return reply.badImplementationCustom(err);
   }
-};
+}
 
-export const update = async (request, reply) => {
+async function update (request, reply) {
   try {
     const model = request.database.Task;
     const id = request.params.id;
@@ -34,9 +43,9 @@ export const update = async (request, reply) => {
   } catch (err) {
     return reply.badImplementationCustom(err);
   }
-};
+}
 
-export const destroy = async (request, reply) => {
+async function destroy (request, reply) {
   try {
     const model = request.database.Task;
     const id = request.params.id;
@@ -57,9 +66,9 @@ export const destroy = async (request, reply) => {
   } catch (err) {
     return reply.badImplementationCustom(err);
   }
-};
+}
 
-export const list = async (request, reply) => {
+async function list (request, reply) {
   try {
     const database = request.database;
     const model = database.Task;
@@ -77,4 +86,4 @@ export const list = async (request, reply) => {
   } catch (err) {
     return reply.badImplementationCustom(err);
   }
-};
+}

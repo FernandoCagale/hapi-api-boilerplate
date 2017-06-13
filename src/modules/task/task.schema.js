@@ -1,44 +1,47 @@
-import Joi from 'joi';
+'use strict';
 
-const schema = {
-  id: Joi
-    .number()
-    .integer()
-    .min(0),
-  title: Joi
-    .string()
-    .min(1)
-    .max(120)
-    .trim(),
-  userId: Joi
-    .number()
-    .integer()
-    .min(0),
-  fields: Joi.object({
-    fields: Joi
-    .string()
-    .min(1)
-    .max(250)
-    .trim()
-  }).options({ allowUnknown: true })
+const Joi = require('joi');
+
+module.exports = {
+  getQuery: getQuery,
+  getSchema: getSchema
 };
 
-const query = {
-  page: Joi
-    .number()
-    .integer()
-    .optional(),
-  limit: Joi
-    .number()
-    .integer()
-    .min(0)
-    .optional()
-};
-
-export function getSchema () {
-  return schema;
+function getSchema () {
+  return {
+    id: Joi
+      .number()
+      .integer()
+      .min(0),
+    title: Joi
+      .string()
+      .min(1)
+      .max(120)
+      .trim(),
+    userId: Joi
+      .number()
+      .integer()
+      .min(0),
+    fields: Joi.object({
+      fields: Joi
+      .string()
+      .min(1)
+      .max(250)
+      .trim()
+    }).options({ allowUnknown: true })
+  };
 }
 
-export function getQuery () {
-  return query;
+function getQuery () {
+  return {
+    page: Joi
+      .number()
+      .integer()
+      .optional(),
+    limit: Joi
+      .number()
+      .integer()
+      .min(0)
+      .optional()
+  };
 }

@@ -1,16 +1,23 @@
-import * as Schema from '../task.schema';
+'use strict';
+
+const Schema = require('../task.schema');
+
+module.exports = {
+  read: read,
+  list: list
+};
 
 const schema = Schema.getSchema();
 const query = Schema.getQuery();
 
-export function list () {
+function list () {
   return {
     headers: schema.fields,
     query: query
   };
 }
 
-export function read () {
+function read () {
   return {
     headers: schema.fields,
     params: {

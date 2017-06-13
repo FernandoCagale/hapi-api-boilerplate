@@ -1,5 +1,7 @@
-import * as Controller from './task.public.controller';
-import * as Validator from './task.public.validation';
+'use strict';
+
+const Controller = require('./task.public.controller');
+const Validator = require('./task.public.validation');
 
 exports.register = (server, options, next) => {
   server.route([

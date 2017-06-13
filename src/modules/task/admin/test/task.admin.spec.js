@@ -1,6 +1,6 @@
 /* global describe, before, it, expect, server */
 
-import * as factory from '../../../../test-utils/factory.girl';
+const factory = require('../../../../test-utils/factory.girl');
 
 const ENDPOINT = '/admin/task';
 
