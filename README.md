@@ -63,7 +63,7 @@ Geralmente o arquivo `{entidade}.schema.js`  é comum entre os escopos, podendo 
 
 Para executar API é necessário configurar as variáveis de ambiente com base no exemplo `.envsamble`. Caso prefira, crie um arquivo `.env` e cole as informações do arquivo `.envsample` e ajuste de acordo com sua necessidade.
 
-Após configurar, execute `npm start`. Lembrando que para usuários Windows é necessário executar o mesmo através de um terminal tipo `Git BASH`, `npm start` executa um arquivo `bash`.
+Após configurar, execute `npm start`. Lembrando que para usuários Windows é necessário executar o mesmo através de um terminal tipo `Git BASH`, acesse `scripts` e execute `./server`.
 
 Para rodar o teste, é necessário existir um banco de dados criado com a seguinte nomenclatura: `BD_NAME`  que é o nome do banco configurado na variável de ambiente seguido por `_test`, e por fim, basta executar `npm test`.
 
