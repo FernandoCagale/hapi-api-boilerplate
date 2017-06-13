@@ -1,5 +1,7 @@
-import * as Controller from './user.admin.controller';
-import * as Validator from './user.admin.validation';
+'use strict';
+
+const Controller = require('./user.admin.controller');
+const Validator = require('./user.admin.validation');
 
 exports.register = (server, options, next) => {
   server.route([

@@ -1,7 +1,17 @@
-import jwt from 'jsonwebtoken';
-import client from '../../../core/client.redis';
+'use strict';
 
-export const create = async (request, reply) => {
+const jwt = require('jsonwebtoken');
+const client = require('../../../core/client.redis');
+
+module.exports = {
+  create: create,
+  update: update,
+  read: read,
+  login: login,
+  logout: logout
+};
+
+async function create (request, reply) {
   try {
     const database = request.database;
     const model = database.User;
@@ -19,9 +29,9 @@ export const create = async (request, reply) => {
   } catch (err) {
     return reply.badImplementationCustom(err);
   }
-};
+}
 
-export const read = async (request, reply) => {
+async function read (request, reply) {
   try {
     const model = request.database.User;
 
@@ -39,9 +49,9 @@ export const read = async (request, reply) => {
   } catch (err) {
     return reply.badImplementationCustom(err);
   }
-};
+}
 
-export const update = async (request, reply) => {
+async function update (request, reply) {
   try {
     const model = request.database.User;
     const id = request.auth.credentials.id;
@@ -57,9 +67,9 @@ export const update = async (request, reply) => {
   } catch (err) {
     return reply.badImplementationCustom(err);
   }
-};
+}
 
-export const login = async (request, reply) => {
+async function login (request, reply) {
   try {
     const model = request.database.User;
     const credentials = request.payload;
@@ -83,9 +93,9 @@ export const login = async (request, reply) => {
   } catch (err) {
     return reply.badImplementationCustom(err);
   }
-};
+}
 
-export const logout = async (request, reply) => {
+async function logout (request, reply) {
   try {
     const token = request.headers.authorization.replace('Bearer ', '');
 
@@ -98,7 +108,7 @@ export const logout = async (request, reply) => {
   } catch (err) {
     return reply.badImplementationCustom(err);
   }
-};
+}
 
 function setRedis (token, id) {
   client.set(token, id);

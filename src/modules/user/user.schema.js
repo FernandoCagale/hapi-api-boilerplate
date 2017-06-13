@@ -1,4 +1,10 @@
-import Joi from 'joi';
+'use strict';
+
+const Joi = require('joi');
+
+module.exports = {
+  getSchema: getSchema
+};
 
 const schema = {
   id: Joi
@@ -18,6 +24,6 @@ const schema = {
     .regex(/(?=[\s\S]*[a-z][\s\S]*)(?=[\s\S]*[0-9][\s\S]*)/i, 'strong password')
 };
 
-export function getSchema () {
+function getSchema () {
   return schema;
 }
