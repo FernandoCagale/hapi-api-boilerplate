@@ -1,18 +1,12 @@
 'use strict';
 
 const Lab = require('lab');
-const chai = require('chai');
+const Code = require('code');
 const bootstrap = require('../core/bootstrap');
-
-const chaiDatetime = require('chai-datetime');
-const chaiThings = require('chai-things');
 
 const lab = exports.lab = Lab.script();
 
-chai.use(chaiDatetime);
-chai.use(chaiThings);
-
-global.expect = chai.expect;
+global.expect = Code.expect;
 
 global.it = lab.it;
 global.before = lab.before;
@@ -35,8 +29,8 @@ global.describe('===> load the bootstrap', () => {
   });
 
   global.it('===> load server finalized', (done) => {
-    global.expect(global).to.have.property('server');
-    global.expect(global).to.have.property('db');
+    global.expect(global.server).to.exist();
+    global.expect(global.db).to.exist();
     done();
   });
 });
