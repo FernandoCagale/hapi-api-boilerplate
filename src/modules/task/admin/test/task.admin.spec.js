@@ -27,9 +27,9 @@ describe(`Routes admin ${ENDPOINT}`, () => {
         }
       };
       server.inject(options, (response) => {
-        expect(response).to.have.property('statusCode', 200);
-        expect(response).to.have.property('result');
-        expect(response.result).to.have.property('id').to.be.a('number').to.be.above(0);
+        expect(response.statusCode).to.equals(200);
+        expect(response.result).to.exist();
+        expect(response.result.id).to.exist();
 
         id = response.result.id;
 
@@ -49,9 +49,9 @@ describe(`Routes admin ${ENDPOINT}`, () => {
         }
       };
       server.inject(options, (response) => {
-        expect(response).to.have.property('statusCode', 200);
-        expect(response).to.have.property('result');
-        expect(response.result).to.have.property('id').to.be.a('number').to.be.above(0);
+        expect(response.statusCode).to.equals(200);
+        expect(response.result).to.exist();
+        expect(response.result.id).exist();
         done();
       });
     });
@@ -67,8 +67,8 @@ describe(`Routes admin ${ENDPOINT}`, () => {
       };
 
       server.inject(options, (response) => {
-        expect(response.result).to.have.property('statusCode', 404);
-        expect(response.result).to.have.property('error', 'Not Found');
+        expect(response.result.statusCode).to.equals(404);
+        expect(response.result.error).to.equals('Not Found');
         done();
       });
     });
@@ -82,9 +82,9 @@ describe(`Routes admin ${ENDPOINT}`, () => {
         headers: {'Authorization': `Bearer ${token}`}
       };
       server.inject(options, (response) => {
-        expect(response).to.have.property('statusCode', 200);
-        expect(response).to.have.property('result');
-        expect(response.result).to.have.property('id').to.be.a('number').to.be.above(0);
+        expect(response.statusCode).to.equals(200);
+        expect(response.result).to.exist();
+        expect(response.result.id).to.exist();
         done();
       });
     });
@@ -96,8 +96,8 @@ describe(`Routes admin ${ENDPOINT}`, () => {
         headers: {'Authorization': `Bearer ${token}`}
       };
       server.inject(options, (response) => {
-        expect(response.result).to.have.property('statusCode', 404);
-        expect(response.result).to.have.property('error', 'Not Found');
+        expect(response.result.statusCode).to.equals(404);
+        expect(response.result.error).to.equals('Not Found');
         done();
       });
     });
@@ -111,9 +111,13 @@ describe(`Routes admin ${ENDPOINT}`, () => {
         headers: {'Authorization': `Bearer ${token}`}
       };
       server.inject(options, (response) => {
-        expect(response.result).to.have.property('count', 1);
-        expect(response.result.rows).to.contain.a.thing.with.property('id');
-        expect(response.result.rows).to.contain.a.thing.with.property('title');
+        expect(response.result.count).to.exist();
+        expect(response.result.count).to.equals(1);
+        expect(response.result.rows).to.exist();
+        expect(response.result.rows[0].id).to.exist();
+        expect(response.result.rows[0].id).to.equals(2);
+        expect(response.result.rows[0].title).to.exist();
+        expect(response.result.rows[0].title).to.equals('title_2');
         done();
       });
     });

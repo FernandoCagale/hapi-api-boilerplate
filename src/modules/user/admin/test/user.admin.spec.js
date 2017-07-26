@@ -16,9 +16,9 @@ describe(`Routes admin ${ENDPOINT}`, () => {
         }
       };
       server.inject(options, (response) => {
-        expect(response).to.have.property('statusCode', 200);
-        expect(response).to.have.property('result');
-        expect(response.result).to.have.property('token');
+        expect(response.result).to.exist();
+        expect(response.result.token).to.exist();
+        expect(response.statusCode).to.equals(200);
 
         token = response.result.token;
 
@@ -36,8 +36,8 @@ describe(`Routes admin ${ENDPOINT}`, () => {
         }
       };
       server.inject(options, (response) => {
-        expect(response.result).to.have.property('statusCode', 401);
-        expect(response.result).to.have.property('error', 'Unauthorized');
+        expect(response.result.statusCode).to.equals(401);
+        expect(response.result.error).to.equals('Unauthorized');
         done();
       });
     });
@@ -52,9 +52,9 @@ describe(`Routes admin ${ENDPOINT}`, () => {
         payload: getDefault()
       };
       server.inject(options, (response) => {
-        expect(response).to.have.property('result');
-        expect(response).to.have.property('statusCode', 200);
-        expect(response.result).to.have.property('token');
+        expect(response.result).to.exist();
+        expect(response.result.token).to.exist();
+        expect(response.statusCode).to.equals(200);
 
         token = response.result.token;
 
@@ -71,9 +71,9 @@ describe(`Routes admin ${ENDPOINT}`, () => {
         headers: {'Authorization': `Bearer ${token}`}
       };
       server.inject(options, (response) => {
-        expect(response).to.have.property('result');
-        expect(response).to.have.property('statusCode', 200);
-        expect(response.result).to.have.property('login', 'login_test');
+        expect(response.result).to.exist();
+        expect(response.statusCode).to.equals(200);
+        expect(response.result.login).to.equals('login_test');
         done();
       });
     });
@@ -91,9 +91,9 @@ describe(`Routes admin ${ENDPOINT}`, () => {
         }
       };
       server.inject(options, (response) => {
-        expect(response).to.have.property('statusCode', 200);
-        expect(response).to.have.property('result');
-        expect(response.result).to.have.property('id');
+        expect(response.result).to.exist();
+        expect(response.statusCode).to.equals(200);
+        expect(response.result.id).to.exist();
         done();
       });
     });
@@ -107,8 +107,7 @@ describe(`Routes admin ${ENDPOINT}`, () => {
         headers: {'Authorization': `Bearer ${token}`}
       };
       server.inject(options, (response) => {
-        expect(response).to.have.property('result');
-        expect(response).to.have.property('statusCode', 200);
+        expect(response.statusCode).to.equals(200);
         done();
       });
     });
@@ -120,8 +119,8 @@ describe(`Routes admin ${ENDPOINT}`, () => {
         headers: {'Authorization': `Bearer ${token}`}
       };
       server.inject(options, (response) => {
-        expect(response.result).to.have.property('statusCode', 401);
-        expect(response.result).to.have.property('error', 'Unauthorized');
+        expect(response.result.statusCode).to.equals(401);
+        expect(response.result.error).to.equals('Unauthorized');
         done();
       });
     });

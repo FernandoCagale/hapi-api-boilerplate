@@ -10,8 +10,9 @@ describe(`Routes public ${ENDPOINT}`, () => {
         url: ENDPOINT
       };
       server.inject(options, (response) => {
-        expect(response.result.rows).to.contain.a.thing.with.property('id');
-        expect(response.result.rows).to.contain.a.thing.with.property('title');
+        expect(response.result.rows).to.exist();
+        expect(response.result.rows[0].id).to.exist();
+        expect(response.result.rows[0].title).to.exist();
         done();
       });
     });
@@ -24,8 +25,8 @@ describe(`Routes public ${ENDPOINT}`, () => {
         url: `${ENDPOINT}/1`
       };
       server.inject(options, (response) => {
-        expect(response.result).to.have.property('id', 1);
-        expect(response.result).to.have.property('title', 'title_1');
+        expect(response.result.id).to.equals(1);
+        expect(response.result.title).to.equals('title_1');
         done();
       });
     });
@@ -36,8 +37,8 @@ describe(`Routes public ${ENDPOINT}`, () => {
         url: `${ENDPOINT}/100`
       };
       server.inject(options, (response) => {
-        expect(response.result).to.have.property('statusCode', 404);
-        expect(response.result).to.have.property('error', 'Not Found');
+        expect(response.result.statusCode).to.equals(404);
+        expect(response.result.error).to.exist('Not Found');
         done();
       });
     });
