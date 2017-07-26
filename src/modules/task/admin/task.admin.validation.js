@@ -1,6 +1,7 @@
 'use strict';
 
 const Schema = require('../task.schema');
+const Joi = require('joi');
 
 const schema = Schema.getSchema();
 const query = Schema.getQuery();
@@ -24,11 +25,11 @@ function destroy () {
 
 function create () {
   return {
-    payload: {
+    payload: Joi.object({
       title: schema
         .title
         .required()
-    }
+    })
   };
 }
 
@@ -39,11 +40,11 @@ function update () {
         .id
         .required()
     },
-    payload: {
+    payload: Joi.object({
       title: schema
         .title
         .required()
-    }
+    })
   };
 }
 

@@ -1,6 +1,7 @@
 'use strict';
 
 const Schema = require('../user.schema');
+const Joi = require('joi');
 
 module.exports = {
   create: create,
@@ -22,39 +23,39 @@ function logout () {
 
 function login () {
   return {
-    payload: {
+    payload: Joi.object({
       login: schema
         .login
         .required(),
       password: schema
         .password
         .required()
-    }
+    })
   };
 }
 
 function create () {
   return {
-    payload: {
+    payload: Joi.object({
       login: schema
         .login
         .required(),
       password: schema
         .password
         .required()
-    }
+    })
   };
 }
 
 function update () {
   return {
-    payload: {
+    payload: Joi.object({
       login: schema
         .login
         .required(),
       password: schema
         .password
         .optional()
-    }
+    })
   };
 }
