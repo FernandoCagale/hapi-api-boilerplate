@@ -30,13 +30,12 @@ module.exports = (sequelize, DataType) => {
           password: hashPassword(user.get('password'))
         });
       }
-    },
-    instanceMethods: {
-      validatePassword: function (password) {
-        return bcrypt.compareSync(password, this.get('password'));
-      }
     }
   });
+
+  User.prototype.validatePassword = function (password) {
+    return bcrypt.compareSync(password, this.get('password'));
+  };
 
   return User;
 };
